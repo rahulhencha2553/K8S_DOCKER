@@ -1,0 +1,10 @@
+application: ''
+clone-on-start: 'true '
+cloud: ''
+config: ''
+git: ''
+name: CONFIG-SERVER
+port: 9091
+server: ''
+spring: ''
+uri: https://github.com/rahulhencha2553/CONFIG_SERVER.git

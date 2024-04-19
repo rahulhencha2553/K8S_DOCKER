@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-config
+data:
+ MYSQL_HOST: "DB"
+ MYSQL_PORT: "3306"
+ MYSQL_USERNAME: "root"
+ MYSQL_PASSWORD: "root"
+ SPRING_PROFILES_ACTIVE: "docker"
+              

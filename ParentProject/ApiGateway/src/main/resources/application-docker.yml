@@ -1,0 +1,16 @@
+#EUREKA SERVER CONFIGURATION
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL}
+  instance:
+    prefer-ip-address: true
+    
+spring:
+  application:
+    name: API-GATEWAY
+
+server:
+  port: 9090

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: db
+          image: mysql
+          imagePullPolicy: Always
+          env:
+            - name: EUREKA_SERVER_URL
+              value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-svc
+spec:
+  ports:
+    - name: db
+      port: 80
+      targetPort: 3306
+  selector:
+    app: db
+  

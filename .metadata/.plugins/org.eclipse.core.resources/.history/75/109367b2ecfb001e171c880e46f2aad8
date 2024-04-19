@@ -1,0 +1,25 @@
+#EUREKA SERVER CONFIGURATION
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka:password@EUREKA-SERVER:8761/eureka
+  instance:
+    prefer-ip-address: true
+    
+server:
+  port: 7771
+  
+spring:
+  application:
+    name: AUTHENTICATION-SERVICE
+  datasource:
+    url: jdbc:mysql://DB:3306/docker-db
+    username: root
+    password: Java@2023
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update

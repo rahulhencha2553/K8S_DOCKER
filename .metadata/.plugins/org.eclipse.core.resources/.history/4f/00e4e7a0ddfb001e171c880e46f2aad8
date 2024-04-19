@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+
+#Eureka Server
+ EUREKA-SERVER:
+  image: r2553/eureka-server:latest
+  container_name: EUREKA-SERVER
+  pull_policy: always
+  ports:
+   - "8761:8761"
+#  environment:
+#   - SPRING_PROFILES_ACTIVE=docker
+ 
+ 
+#Api Gateway
+ API-GATEWAY:
+  image: r2553/api-gateway:latest
+  container_name: API-GATEWAY
+  pull_policy: always
+  ports:
+  - "9090:9090"
+  depends_on:
+  - EUREKA-SERVER
+ 
+#Authentication
+ AUTHENTICATION-SERVICE:
+  image: r2553/authentication:latest
+  container_name: AUTHENTICATION-SERVICE
+  pull_policy: always
+  ports:
+  - "7771:7771"
+  depends_on:
+  - EUREKA-SERVER
+  - API-GATEWAY

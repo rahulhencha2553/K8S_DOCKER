@@ -1,0 +1,23 @@
+server:
+  port: 9091
+ 
+spring:
+  application:
+    name: CONFIG-SERVER
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/rahulhencha2553/CONFIG_SERVER.git
+          clone-on-start: true
+          
+#EUREKA SERVER CONFIGURATION
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL}
+  instance:
+    prefer-ip-address: true

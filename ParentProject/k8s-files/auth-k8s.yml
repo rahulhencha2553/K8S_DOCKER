@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-app
+  labels:
+    app: auth-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app : auth-app
+  template:
+    metadata:
+      labels:
+        app: auth-app
+    spec:
+      containers:
+      - name: authentication
+        image: r2553/authentication:02
+        imagePullPolicy: Always
+        env:
+            - name: EUREKA_SERVER_URL
+              value: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+            - name: MYSQL_USERNAME
+              value: root
+            - name: MYSQL_PASSWORD
+              value: root
+            - name: MYSQL_PORT
+              value: "3306"
+            - name: MYSQL_HOST
+              value: mysql.default.svc.cluster.local
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  auth-svc
+spec:
+  selector:
+    app:  auth-app
+  ports:
+  - port: 80
+    targetPort:  7771
+  type: LoadBalancer
